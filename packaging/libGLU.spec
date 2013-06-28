@@ -10,6 +10,7 @@ Summary:        Graphics Library Utilities (GLU)
 Url:            http://www.mesa3d.org
 Group:          Development/Libraries/C and C++
 Source:         glu.tar.bz2
+Source1001: 	libGLU.manifest
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  gcc-c++
@@ -51,6 +52,7 @@ compiling programs with GLU.
 
 %prep
 %setup -q -n glu
+cp %{SOURCE1001} .
 
 %build
 autoreconf -fi
@@ -65,10 +67,12 @@ make %{?_smp_mflags} OPT_FLAGS="%{optflags}"
 %postun  -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_libdir}/libGLU.so.1*
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root)
 /usr/include/GL
 %{_libdir}/pkgconfig/glu.pc
