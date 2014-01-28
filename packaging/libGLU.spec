@@ -1,6 +1,7 @@
 #
 # Please submit bugfixes or comments via http://bugs.tizen.org/
 #
+%bcond_with x
 
 Name:           libGLU
 Version:        9.0.0
@@ -19,6 +20,10 @@ BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(gl)
 Provides:       mesa:%{_libdir}/libGLU.so.1
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 GLU offers simple interfaces for building mipmaps; checking for the
